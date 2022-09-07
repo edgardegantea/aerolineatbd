@@ -1,6 +1,8 @@
 from django.db import models
 
 SEXO = (('Femenino', 'Femenino'), ('Masculino', 'Masculino'))
+DISPONIBILIDAD = (('Libre', 'Libre'), ('Ocupado', 'Ocupado'))
+
 
 class Aerolinea(models.Model):
     nombre = models.CharField(verbose_name='Nombre de la Aerolinea', max_length=60)
@@ -74,7 +76,7 @@ class Viaje(models.Model):
 class Boleto(models.Model):
     numeroAsiento = models.CharField(verbose_name='Ingrese el numero de Asiento asignado', max_length=10)
     horaCompra = models.TimeField(auto_now_add=True)
-    clase = models.TimeField(verbose_name='Ingrese el tipo de clase del boleto', max_length=10)
+    clase = models.CharField(verbose_name='Ingrese el tipo de clase del boleto', max_length=10)
     fechaSalida = models.DateField(verbose_name='Ingrese la fecha de salida del Viaje')
     horaSalida = models.TimeField(verbose_name='Ingrese la hora de salida del viaje')
     fechaCreacion = models.DateTimeField(auto_now_add=True)
@@ -171,9 +173,16 @@ class Pago(models.Model):
 
 class Asiento(models.Model):
     numAsiento = models.SmallIntegerField(verbose_name='Numero de aseinto')
-    disponible = models.CharField(verbose_name='Disnponibilidad del asiento', max_length=20)
+    disponible = models.CharField(choices=DISPONIBILIDAD, default='Libre', max_length=7, verbose_name='Seleccione la '
+                                                                                                      'disponibilidad'
+                                                                                                      ' del asiento')
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.numAsiento
+
+
+class Student(models.Model):
+    stuname = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)

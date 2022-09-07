@@ -1,21 +1,32 @@
-"""aerolinea URL Configuration
+from django.urls import include, path
+from rest_framework import routers
+from aero import views
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'ciudad', views.CiudadViewSet)
+router.register(r'estado', views.EstadoViewSet)
+router.register(r'direccion', views.DireccionViewSet)
+router.register(r'aerolinea', views.AerolineaViewSet)
+router.register(r'areaTrabajo', views.AreaTrabajoViewSet)
+router.register(r'avion', views.AvionViewSet)
+router.register(r'empleado', views.EmpleadoViewSet)
+router.register(r'aeropuerto', views.AeropuertoViewSet)
+router.register(r'viaje', views.ViajeViewSet)
+router.register(r'boleto', views.BoletoViewSet)
+router.register(r'ruta', views.RutaViewSet)
+router.register(r'direccion', views.DireccionViewSet)
+router.register(r'reservacionViajes', views.ReservacionViajesViewSet)
+router.register(r'pasajero', views.PasajeroViewSet)
+router.register(r'tarifa', views.TarifaViewSet)
+router.register(r'pago', views.PagoViewSet)
+router.register(r'asiento', views.AsientoViewSet)
+router.register(r'student', views.StudentViewSet)
 
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
