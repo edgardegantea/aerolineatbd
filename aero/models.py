@@ -23,7 +23,7 @@ class AreaTrabajo(models.Model):
 
 
 class Avion(models.Model):
-    capacidad = models.IntegerField(verbose_name='Capacidad del Avion', max_length=10)
+    capacidad = models.IntegerField(verbose_name='Capacidad del Avion')
     modelo = models.CharField(verbose_name='Modelo del Avion', max_length=10)
     matricula = models.CharField(verbose_name='Matricula', max_length=10)
     fabricante = models.CharField(verbose_name='Fabricante', max_length=25)
@@ -86,7 +86,7 @@ class Boleto(models.Model):
 
 class Ciudad(models.Model):
     nombre = models.CharField(verbose_name='Nombre de la ciudad', max_length=80)
-    cp = models.IntegerField(verbose_name='codigo postal', max_length=10)
+    cp = models.IntegerField(verbose_name='codigo postal')
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now_add=True)
 
@@ -136,7 +136,7 @@ class ReservacionViajes(models.Model):
 
 class Pasajero(models.Model):
     nombrePasajero = models.CharField(verbose_name='Nombre del pasajero', max_length=80)
-    apellidoPaterno = models.CharField(verbos_name='Apellido paterno', max_length=50)
+    apellidoPaterno = models.CharField(verbose_name='Apellido paterno', max_length=50)
     apellidoMaterno = models.CharField(verbose_name='Apellido materno', max_length=50)
     telefono = models.CharField(verbose_name='Telefono del pasajero', max_length=13)
     clavePasaporte = models.CharField(verbose_name='Clave de pasaporte', max_length=20)
@@ -149,7 +149,7 @@ class Pasajero(models.Model):
 
 
 class Tarifa(models.Model):
-    costo = models.DecimalField(verbose_name='Costo tarifa', max_digits=10)
+    costo = models.DecimalField(verbose_name='Costo tarifa', max_digits=5, decimal_places=2)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now_add=True)
 
@@ -159,7 +159,7 @@ class Tarifa(models.Model):
 
 class Pago(models.Model):
     tipoPago = models.CharField(verbose_name='tipo de pago', max_length=30)
-    cantidad = models.DecimalField(verbose_name='Cantidad a pagar', max_digits=10)
+    cantidad = models.DecimalField(verbose_name='Cantidad a pagar', max_digits=5, decimal_places=2)
     nombreTitular = models.CharField(verbose_name='Nombre del titular', max_length=80)
     referenciaPago = models.CharField(verbose_name='Referencia de pago', max_length=30)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
@@ -170,7 +170,7 @@ class Pago(models.Model):
 
 
 class Asiento(models.Model):
-    numAsiento = models.SmallIntegerField(verbose_name='Numero de aseinto', max_length=3)
+    numAsiento = models.SmallIntegerField(verbose_name='Numero de aseinto')
     disponible = models.CharField(verbose_name='Disnponibilidad del asiento', max_length=20)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now_add=True)
