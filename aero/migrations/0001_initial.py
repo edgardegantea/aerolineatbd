@@ -83,7 +83,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=80, verbose_name='Nombre de la ciudad')),
-                ('cp', models.IntegerField(verbose_name='codigo postal')),
+                ('cp', models.CharField(max_length=10, verbose_name='codigo postal')),
                 ('fechaCreacion', models.DateTimeField(auto_now_add=True)),
                 ('fechaActualizacion', models.DateTimeField(auto_now_add=True)),
             ],

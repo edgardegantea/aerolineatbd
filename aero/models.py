@@ -16,7 +16,7 @@ class Aerolinea(models.Model):
 
 class AreaTrabajo(models.Model):
     nombreArea = models.CharField(verbose_name='Area de Trabajo', max_length=50)
-    claveArea = models.CharField(verbose_name='Clave de area', max_length=10)
+    claveArea = models.CharField(verbose_name='Clave de area', max_length=20)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now=True)
 
@@ -25,11 +25,11 @@ class AreaTrabajo(models.Model):
 
 
 class Avion(models.Model):
-    capacidad = models.IntegerField(verbose_name='Capacidad del Avion')
+    capacidad = models.CharField(verbose_name='Capacidad del Avion', max_length=5)
     modelo = models.CharField(verbose_name='Modelo del Avion', max_length=10)
     matricula = models.CharField(verbose_name='Matricula', max_length=10)
     fabricante = models.CharField(verbose_name='Fabricante', max_length=25)
-    horasVuelo = models.TimeField(verbose_name='Horas de Vuelo')
+    horasVuelo = models.CharField(verbose_name='Horas de Vuelo', max_length=10)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now=True)
 
@@ -41,7 +41,7 @@ class Empleado(models.Model):
     nombre = models.CharField(verbose_name='Nombre', max_length=60)
     apellidoPaterno = models.CharField(verbose_name='Apellido Paterno', max_length=40)
     apellidoMaterno = models.CharField(verbose_name='Apellido Materno', max_length=40)
-    sexo = models.CharField(choices=SEXO, default='Femenino', max_length=9,
+    sexo = models.CharField(choices=SEXO, default='Femenino', max_length=10,
                             verbose_name='Seleccione el sexo del Empleado')
     clavePasaporte = models.CharField(verbose_name='Ingrese la clave del pasaporte', max_length=20)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
@@ -65,7 +65,7 @@ class Aeropuerto(models.Model):
 class Viaje(models.Model):
     codigoViaje = models.CharField(verbose_name='Ingrese el codigo de su viaje', max_length=50)
     fechaLlegada = models.DateField(verbose_name='Fecha de Llegada del viaje')
-    horaLlegada = models.TimeField(verbose_name='Hora de Legada del viaje')
+    horaLlegada = models.CharField(verbose_name='Hora de Legada del viaje', max_length=10)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now=True)
 
@@ -88,7 +88,7 @@ class Boleto(models.Model):
 
 class Ciudad(models.Model):
     nombre = models.CharField(verbose_name='Nombre de la ciudad', max_length=80)
-    cp = models.IntegerField(verbose_name='codigo postal')
+    cp = models.CharField(verbose_name='codigo postal', max_length=10)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now_add=True)
 
@@ -127,7 +127,7 @@ class Ruta(models.Model):
 
 
 class ReservacionViajes(models.Model):
-    fechaReservacion = models.DateTimeField(auto_now_add=True)
+    fechaReservacion = models.CharField(verbose_name='Fecha de Reservacion DD/MM/AAAA', max_length=12)
     lugaresReservados = models.CharField(verbose_name='Numero de lugar', max_length=4)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now_add=True)
@@ -151,7 +151,7 @@ class Pasajero(models.Model):
 
 
 class Tarifa(models.Model):
-    costo = models.DecimalField(verbose_name='Costo tarifa', max_digits=5, decimal_places=2)
+    costo = models.CharField(verbose_name='Costo tarifa', max_length=10)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaActualizacion = models.DateTimeField(auto_now_add=True)
 
@@ -161,7 +161,7 @@ class Tarifa(models.Model):
 
 class Pago(models.Model):
     tipoPago = models.CharField(verbose_name='tipo de pago', max_length=30)
-    cantidad = models.DecimalField(verbose_name='Cantidad a pagar', max_digits=5, decimal_places=2)
+    cantidad = models.CharField(verbose_name='Cantidad a pagar', max_length=10)
     nombreTitular = models.CharField(verbose_name='Nombre del titular', max_length=80)
     referenciaPago = models.CharField(verbose_name='Referencia de pago', max_length=30)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
@@ -172,7 +172,7 @@ class Pago(models.Model):
 
 
 class Asiento(models.Model):
-    numAsiento = models.SmallIntegerField(verbose_name='Numero de aseinto')
+    numAsiento = models.CharField(verbose_name='Numero de aseinto', max_length=5)
     disponible = models.CharField(choices=DISPONIBILIDAD, default='Libre', max_length=7, verbose_name='Seleccione la '
                                                                                                       'disponibilidad'
                                                                                                       ' del asiento')
